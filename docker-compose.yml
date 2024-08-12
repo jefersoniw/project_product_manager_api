@@ -17,7 +17,7 @@ services:
   # nginx
   nginx_product_manager:
     image: nginx:alpine
-    container_name: nginx
+    container_name: nginx_product_manager
     ports:
       - "80:80"
     volumes:
