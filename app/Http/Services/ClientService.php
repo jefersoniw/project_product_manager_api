@@ -107,4 +107,21 @@ class ClientService
       ];
     }
   }
+
+  public function deleteClient($id)
+  {
+    $client = $this->client->find($id);
+
+    if (!$client) {
+      return [
+        'msg' => 'Client not exists!'
+      ];
+    }
+
+    $client->delete();
+
+    return [
+      'msg' => 'Client deleted!'
+    ];
+  }
 }

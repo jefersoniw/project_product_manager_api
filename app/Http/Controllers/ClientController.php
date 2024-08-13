@@ -32,5 +32,8 @@ class ClientController extends Controller
         return new ClientResource($this->clientService->editClient($request, $id));
     }
 
-    public function delete(Client $client) {}
+    public function delete($id)
+    {
+        return response()->json($this->clientService->deleteClient($id));
+    }
 }
