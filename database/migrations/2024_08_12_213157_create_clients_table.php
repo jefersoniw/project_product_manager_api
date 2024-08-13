@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('cpf');
-            $table->text('address_text');
+            $table->text('address');
             $table->longText('photo');
             $table->char('sex', 1);
             $table->timestamps();
