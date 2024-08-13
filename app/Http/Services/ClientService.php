@@ -6,9 +6,7 @@ use App\Http\Requests\ClientStoreRequest;
 use App\Http\Requests\ClientUpdateRequest;
 use App\Models\Client;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class ClientService
 {
@@ -75,5 +73,38 @@ class ClientService
     }
   }
 
-  public function editClient(ClientUpdateRequest $request, $id) {}
+  public function editClient(ClientUpdateRequest $request, $id)
+  {
+    try {
+
+      if (!!$request->cpf) {
+        if (!validateCpf($request->cpf)) {
+          throw new Exception("CPF is invalid!");
+        }
+      }
+
+      $client = $this->client->find($id);
+      if (!$client) {
+        throw new Exception("Client not exists!");
+      }
+
+      $client->update($request->all());
+
+      if (!$client) {
+        throw new Exception("Error update client!");
+      }
+
+      return $client;
+    } catch (Exception $error) {
+
+      Log::warning('Error update client', [
+        'error' => $error->getMessage()
+      ]);
+
+      return [
+        'error' => true,
+        'msg' => $error->getMessage(),
+      ];
+    }
+  }
 }

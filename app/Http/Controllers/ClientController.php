@@ -7,7 +7,6 @@ use App\Http\Requests\ClientUpdateRequest;
 use App\Http\Resources\ClientResource;
 use App\Http\Services\ClientService;
 use App\Models\Client;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -28,7 +27,10 @@ class ClientController extends Controller
         return new ClientResource($this->clientService->newClient($request));
     }
 
-    public function update(ClientUpdateRequest $request, $id) {}
+    public function update(ClientUpdateRequest $request, $id)
+    {
+        return new ClientResource($this->clientService->editClient($request, $id));
+    }
 
     public function delete(Client $client) {}
 }
