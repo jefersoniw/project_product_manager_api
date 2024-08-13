@@ -23,4 +23,5 @@ route::group(['prefix' => 'clients'], function () {
 
     route::get('/', [ClientController::class, 'index']);
     route::get('/{id}', [ClientController::class, 'show']);
+    route::post('/', [ClientController::class, 'store']);
 });

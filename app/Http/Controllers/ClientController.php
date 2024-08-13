@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientStoreRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use App\Http\Resources\ClientResource;
 use App\Http\Services\ClientService;
 use App\Models\Client;
@@ -14,21 +15,20 @@ class ClientController extends Controller
 
     public function index()
     {
-        $clients = $this->clientService->allClients();
-
-        return ClientResource::collection($clients);
+        return ClientResource::collection($this->clientService->allClients());
     }
 
     public function show($id)
     {
-        $client = $this->clientService->detailClient($id);
-
-        return new ClientResource($client);
+        return new ClientResource($this->clientService->detailsClient($id));
     }
 
-    public function store(ClientStoreRequest $request) {}
+    public function store(ClientStoreRequest $request)
+    {
+        return new ClientResource($this->clientService->newClient($request));
+    }
 
-    public function update(Client $client, Request $request) {}
+    public function update(ClientUpdateRequest $request, $id) {}
 
     public function delete(Client $client) {}
 }

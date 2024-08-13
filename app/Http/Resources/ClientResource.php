@@ -16,7 +16,7 @@ class ClientResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        if (!!$this->resource['msg']) {
+        if ($this->resource['error']) {
             return [
                 'msg' => $this->resource['msg']
             ];
@@ -26,11 +26,11 @@ class ClientResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'cpf' => $this->cpf,
-            'address_text' => $this->address_text,
-            'photo' => $this->photo,
+            'address' => $this->address,
             'sex' => $this->sex == 'm' ? 'Male' : 'Female',
             'created_at' => Carbon::parse($this->created_at)->format('d/m/Y H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y H:i:s')
+            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y H:i:s'),
+            'photo' => $this->photo ?? 'Image available in details',
         ];
     }
 }
