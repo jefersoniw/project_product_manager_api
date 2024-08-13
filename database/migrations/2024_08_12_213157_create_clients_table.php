@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('cpf');
+            $table->string('cpf');
             $table->text('address_text');
             $table->longText('photo');
-            $table->char('sex');
+            $table->char('sex', 1);
             $table->timestamps();
         });
     }
