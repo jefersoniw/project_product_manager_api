@@ -30,4 +30,6 @@ route::group(['prefix' => 'clients'], function () {
 
 route::group(['prefix' => 'products'], function () {
     route::get('/', [ProductController::class, 'index']);
+    route::get('/{id}', [ProductController::class, 'show']);
+    route::get('/client/{client_id}', [ProductController::class, 'filterByClient']);
 });

@@ -14,7 +14,16 @@ class ProductController extends Controller
     {
         return ProductResource::collection($this->productService->allProducts());
     }
-    public function show($id) {}
+    public function show($id)
+    {
+        return new ProductResource($this->productService->detailsProduct($id));
+    }
+
+    public function filterByClient($client_id)
+    {
+        return ProductResource::collection($this->productService->productsByClient($client_id));
+    }
+
     public function store(Request $request) {}
     public function update(Request $request, $id) {}
     public function delete($id) {}

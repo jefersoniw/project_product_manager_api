@@ -29,6 +29,7 @@ class ProductResource extends JsonResource
             'photo' => $this->photo ?? 'Image available in details',
             'client_id' => $this->client_id,
             'client' => [
+                'id' => $this->client->id,
                 'name' => $this->client->name,
                 'cpf' => $this->client->cpf,
                 'address' => $this->client->address,
