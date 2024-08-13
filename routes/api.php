@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +21,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 route::group(['prefix' => 'clients'], function () {
-
     route::get('/', [ClientController::class, 'index']);
     route::get('/{id}', [ClientController::class, 'show']);
     route::post('/', [ClientController::class, 'store']);
     route::put('/{id}', [ClientController::class, 'update']);
     route::delete('/delete/{id}', [ClientController::class, 'delete']);
+});
+
+route::group(['prefix' => 'products'], function () {
+    route::get('/', [ProductController::class, 'index']);
+    route::get('/{id}', [ProductController::class, 'show']);
+    route::get('/client/{client_id}', [ProductController::class, 'filterByClient']);
+    route::post('/', [ProductController::class, 'store']);
 });

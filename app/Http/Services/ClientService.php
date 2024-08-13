@@ -17,7 +17,7 @@ class ClientService
     return $this
       ->client
       ->select('id', 'name', 'cpf', 'address', 'sex')
-      ->paginate();
+      ->paginate(10);
   }
 
   public function detailsClient($id)
