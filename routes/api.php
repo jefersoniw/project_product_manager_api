@@ -20,10 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 route::group(['prefix' => 'clients'], function () {
-
     route::get('/', [ClientController::class, 'index']);
     route::get('/{id}', [ClientController::class, 'show']);
     route::post('/', [ClientController::class, 'store']);
     route::put('/{id}', [ClientController::class, 'update']);
     route::delete('/delete/{id}', [ClientController::class, 'delete']);
+});
+
+route::group(['prefix' => 'products'], function () {
+    route::get('/');
 });
