@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-route::group(['prefix' => 'users'], function () {});
+route::group(['prefix' => 'users'], function () {
+    route::get('/', [UserController::class, 'index']);
+});
 
 route::group(['prefix' => 'clients'], function () {
     route::get('/', [ClientController::class, 'index']);
