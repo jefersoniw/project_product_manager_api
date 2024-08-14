@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+route::group(['prefix' => 'users'], function () {});
+
 route::group(['prefix' => 'clients'], function () {
     route::get('/', [ClientController::class, 'index']);
     route::get('/{id}', [ClientController::class, 'show']);
@@ -33,4 +35,6 @@ route::group(['prefix' => 'products'], function () {
     route::get('/{id}', [ProductController::class, 'show']);
     route::get('/client/{client_id}', [ProductController::class, 'filterByClient']);
     route::post('/', [ProductController::class, 'store']);
+    route::put('/{id}', [ProductController::class, 'update']);
+    route::delete('/delete/{id}', [ProductController::class, 'delete']);
 });

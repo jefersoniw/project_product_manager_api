@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Client;
 use App\Models\Product;
 use Exception;
@@ -90,5 +91,57 @@ class ProductService
         'msg' => $error->getMessage(),
       ];
     }
+  }
+
+  public function editProduct(ProductUpdateRequest $request, $id)
+  {
+    try {
+
+      $product = $this
+        ->product
+        ->with('client')
+        ->find($id);
+
+      if (!$product) {
+        return [
+          'error' => true,
+          'msg' => 'Product not exists!'
+        ];
+      }
+
+      $product->update($request->all());
+
+      if (!$product) {
+        throw new Exception("Error update product!");
+      }
+
+      return $product;
+    } catch (Exception $error) {
+      Log::warning('Error update product', [
+        'error' => $error->getMessage()
+      ]);
+
+      return [
+        'error' => true,
+        'msg' => $error->getMessage(),
+      ];
+    }
+  }
+
+  public function deleteProduct($id)
+  {
+    $product = $this->product->find($id);
+
+    if (!$product) {
+      return [
+        'msg' => 'Product not exists!'
+      ];
+    }
+
+    $product->delete();
+
+    return [
+      'msg' => 'Product deleted!'
+    ];
   }
 }

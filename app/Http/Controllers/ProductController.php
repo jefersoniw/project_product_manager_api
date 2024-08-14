@@ -14,7 +14,6 @@ class ProductController extends Controller
 
     public function index()
     {
-        dd(date('d/m/Y H:i:s'));
         return ProductResource::collection($this->productService->allProducts());
     }
     public function show($id)
@@ -31,6 +30,12 @@ class ProductController extends Controller
     {
         return new ProductResource($this->productService->newProduct($request));
     }
-    public function update(ProductUpdateRequest $request, $id) {}
-    public function delete($id) {}
+    public function update(ProductUpdateRequest $request, $id)
+    {
+        return new ProductResource($this->productService->editProduct($request, $id));
+    }
+    public function delete($id)
+    {
+        return response()->json($this->productService->deleteProduct($id));
+    }
 }
