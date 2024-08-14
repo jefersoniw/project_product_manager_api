@@ -33,4 +33,6 @@ route::group(['prefix' => 'products'], function () {
     route::get('/{id}', [ProductController::class, 'show']);
     route::get('/client/{client_id}', [ProductController::class, 'filterByClient']);
     route::post('/', [ProductController::class, 'store']);
+    route::put('/{id}', [ProductController::class, 'update']);
+    route::delete('/delete/{id}', [ProductController::class, 'delete']);
 });
