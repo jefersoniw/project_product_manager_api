@@ -13,7 +13,10 @@ class UserController extends Controller
     {
         return UserResource::collection($this->userService->allUsers());
     }
-    public function show() {}
+    public function show($id)
+    {
+        return new UserResource($this->userService->detailsUser($id));
+    }
     public function store() {}
     public function update() {}
     public function delete() {}
