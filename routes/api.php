@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -17,11 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+route::post('/login', [AuthController::class, 'login']);
+route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
-route::group(['prefix' => 'users'], function () {
+route::group(['middleware' => 'auth:api', 'prefix' => 'users'], function () {
     route::get('/', [UserController::class, 'index']);
     route::get('/{id}', [UserController::class, 'show']);
     route::post('/', [UserController::class, 'store']);
@@ -29,7 +29,7 @@ route::group(['prefix' => 'users'], function () {
     route::delete('/delete/{id}', [UserController::class, 'delete']);
 });
 
-route::group(['prefix' => 'clients'], function () {
+route::group(['middleware' => 'auth:api', 'prefix' => 'clients'], function () {
     route::get('/', [ClientController::class, 'index']);
     route::get('/{id}', [ClientController::class, 'show']);
     route::post('/', [ClientController::class, 'store']);
@@ -37,7 +37,7 @@ route::group(['prefix' => 'clients'], function () {
     route::delete('/delete/{id}', [ClientController::class, 'delete']);
 });
 
-route::group(['prefix' => 'products'], function () {
+route::group(['middleware' => 'auth:api', 'prefix' => 'products'], function () {
     route::get('/', [ProductController::class, 'index']);
     route::get('/{id}', [ProductController::class, 'show']);
     route::get('/client/{client_id}', [ProductController::class, 'filterByClient']);
