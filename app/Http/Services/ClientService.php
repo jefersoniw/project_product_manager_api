@@ -24,7 +24,6 @@ class ClientService
   {
 
     $client = $this->client->find($id);
-
     if (!$client) {
       return [
         'error' => true,
@@ -54,7 +53,6 @@ class ClientService
         'photo' => $photo,
         'sex' => $request->sex
       ]);
-
       if (!$client) {
         throw new Exception("Error create new client!");
       }
@@ -89,7 +87,6 @@ class ClientService
       }
 
       $client->update($request->all());
-
       if (!$client) {
         throw new Exception("Error update client!");
       }
@@ -111,7 +108,6 @@ class ClientService
   public function deleteClient($id)
   {
     $client = $this->client->find($id);
-
     if (!$client) {
       return [
         'msg' => 'Client not exists!'
