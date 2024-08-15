@@ -74,7 +74,6 @@ class ProductService
         'client_id' => $client->id,
         'photo' => $photo,
       ]);
-
       if (!$product) {
         throw new Exception("Error create new product!");
       }
@@ -110,7 +109,6 @@ class ProductService
       }
 
       $product->update($request->all());
-
       if (!$product) {
         throw new Exception("Error update product!");
       }
@@ -131,7 +129,6 @@ class ProductService
   public function deleteProduct($id)
   {
     $product = $this->product->find($id);
-
     if (!$product) {
       return [
         'msg' => 'Product not exists!'

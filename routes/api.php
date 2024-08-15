@@ -25,6 +25,8 @@ route::group(['prefix' => 'users'], function () {
     route::get('/', [UserController::class, 'index']);
     route::get('/{id}', [UserController::class, 'show']);
     route::post('/', [UserController::class, 'store']);
+    route::put('/{id}', [UserController::class, 'update']);
+    route::delete('/delete/{id}', [UserController::class, 'delete']);
 });
 
 route::group(['prefix' => 'clients'], function () {
