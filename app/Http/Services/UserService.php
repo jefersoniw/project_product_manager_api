@@ -22,7 +22,7 @@ class UserService
     if (!$user) {
       return [
         'error' => true,
-        'msg' => 'Client not exists!'
+        'msg' => 'User not exists!'
       ];
     }
 
@@ -34,7 +34,7 @@ class UserService
     try {
       $user = $this->user->create($request->all());
       if (!$user) {
-        throw new Exception("Error create new client!");
+        throw new Exception("Error create new user!");
       }
 
       return $user;
