@@ -60,7 +60,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @OA\DELETE(
+     * @OA\POST(
      *  tags={"JWT Authentication"},
      *  summary="Revoke all user tokens",
      *  description="This endpoint provides a logout for user, revoking all actived user tokens.",
