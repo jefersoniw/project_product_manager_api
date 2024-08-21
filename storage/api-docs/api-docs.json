@@ -637,7 +637,8 @@
                                         "type": "string"
                                     },
                                     "price": {
-                                        "type": "decimal"
+                                        "type": "number",
+                                        "format": "float"
                                     },
                                     "client_id": {
                                         "type": "integer"
@@ -792,7 +793,8 @@
                                         "type": "string"
                                     },
                                     "price": {
-                                        "type": "decimal"
+                                        "type": "number",
+                                        "format": "float"
                                     },
                                     "client_id": {
                                         "type": "integer"

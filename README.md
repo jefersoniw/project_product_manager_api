@@ -1,66 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h3 align="center">
+  <p> API REST - GERENCIAMENTO DE PRODUTOS EM ESTOQUE </p>
+</h3>
+<img src="./public/swagger_doc.png" />
+<h1>
+  <p> Documentação Swagger | Endpoints </p>
+</h1>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📖 Sobre o projeto
 
-## About Laravel
+-   Criando uma **api rest** para gerenciamento de produtos e clientes.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   A Aplicação é um teste técnico aplicado pela empresa Coalize para ser feito com o framework Yii2, porém além de fazer em Yii2 ➡️ (https://github.com/jefersoniw/avaliacao-tecnico-coalize), também decidir fazer usando o framework Laravel.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✅ Requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Autenticação por credencial (usuário/senha) e retorno de token (Bearer sugerido).
+-   Todas APIs (exceto a de autenticação) devem ter a validação do token fornecido ao efetuar
+    a autenticação, preferencialmente passar pelo Header (Authorization).
+-   Desenvolver APIs para os seguinte
+    -   Autenticação
+    -   Cadastro de cliente básico
+        -   Nome
+        -   CPF (com validação)
+        -   Dados de endereço (CEP, Logradouro, Número, Cidade, Estado,
+            Complemento)
+        -   Foto
+        -   Sexo
+    -   Lista dos clientes
+        -   Usar paginação para o retorno
+    -   Cadastro de produto
+        -   Nome
+        -   Preço
+        -   Cliente (detentor do produto)
+        -   Foto
+    -   Lista dos produtos
+        -   Retornar paginado
+        -   Permitir filtrar pelo cliente
 
-## Learning Laravel
+## 🔨 Tecnologias utilizadas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   [PHP](https://www.php.net/)
+-   [Laravel](https://laravel.com/)
+-   [Composer](https://getcomposer.org/)
+-   [MySql](https://dev.mysql.com/doc/)
+-   [Docker](https://www.docker.com/)
+-   [Nginx](https://nginx.org/en/)
+-   [Swagger](https://swagger.io/docs/)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ♻️ Como executar o projeto
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Pré-requisitos:
 
-## Laravel Sponsors
+-   Docker Desktop
+-   Git
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+  # Clonar repositório
+  $ git clone https://github.com/jefersoniw/project_product_manager_api.git
+```
 
-### Premium Partners
+```bash
+  # Entrar na pasta do projeto
+  $ cd project_product_manager_api
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+  # copiar o env example para a nova configuração do env
+  $ cp .env.example .env
+```
 
-## Contributing
+```bash
+  # copiar e ajustar as configurações de environment
+  DB_CONNECTION=mysql
+  DB_HOST=db_product_manager
+  DB_PORT=3306
+  DB_DATABASE=db_product_manager
+  DB_USERNAME=root
+  DB_PASSWORD=root
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  REDIS_HOST=redis_product_manager
+  REDIS_PASSWORD=null
+  REDIS_PORT=6379
+```
 
-## Code of Conduct
+```bash
+  # Cria e inicia os containers docker
+  $ docker compose up -d
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+  # No docker, acessa o container do php para instalação das dependencias.
+  $ docker compose exec app_product_manager bash
+```
 
-## Security Vulnerabilities
+```bash
+  # Instalando dependências
+  $ composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+  # Gerando uma nova chave no seu arquivo .env
+  $ php artisan key:generate
+```
 
-## License
+```bash
+  $ php artisan optimize
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+  # Publicando todo o schema de dados no banco de dados | Criação das tabelas no banco.
+  $ php artisan migrate
+```
+
+```bash
+  # Preenchendo o banco de dados com dados padrões.
+  $ php artisan db:seed
+```
+
+-   ### Para acessar a documentação Swagger pelo projeto acesse ➡️ http://localhost/api/doc
+
+## 🛎️ License
+
+[![NPM](https://img.shields.io/badge/license-MIT-green)](https://github.com/jefersoniw/atendimento_nodejs/blob/main/LICENSE)
+
+## 🤓 Autor
+
+### Jeferson Chagas Silva
+
+### https://www.linkedin.com/in/jefersoniw/
