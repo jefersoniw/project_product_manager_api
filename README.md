@@ -117,6 +117,11 @@
   $ php artisan db:seed
 ```
 
+```bash
+  # Email: admin@admin.com
+  # Senha: password
+```
+
 -   ### Para acessar a documentação Swagger pelo projeto acesse ➡️ http://localhost/api/doc
 
 ## 🛎️ License
