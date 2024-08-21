@@ -155,7 +155,6 @@ class ClientController extends Controller
      *      @OA\MediaType(
      *          mediaType="application/json",
      *          @OA\Schema(
-     *                 required={"email","password"},
      *                 @OA\Property(
      *                     property="name",
      *                     type="string"
