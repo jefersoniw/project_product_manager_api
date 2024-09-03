@@ -20,7 +20,7 @@ class AuthController extends Controller
      *          mediaType="multipart/form-data",
      *          @OA\Schema(
      *              required={"email","password"},
-     *              @OA\Property(property="email", type="string", example="jeferson_chagas@hotmail.com"),
+     *              @OA\Property(property="email", type="string", example="jeferson@email.com"),
      *              @OA\Property(property="password", type="string", example="password")
      *          )
      *      ),
