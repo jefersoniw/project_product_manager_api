@@ -70,7 +70,9 @@
 ```
 
 ```bash
-  # copiar e ajustar as configurações de environment
+  # copiar e ajustar as configurações do env
+  L5_SWAGGER_CONST_HOST=http://localhost
+
   DB_CONNECTION=mysql
   DB_HOST=db_product_manager
   DB_PORT=3306
