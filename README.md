@@ -104,6 +104,11 @@
 ```
 
 ```bash
+  # Gerando uma chave de configuração do jwt no seu arquivo .env
+  $ php artisan jwt:secret
+```
+
+```bash
   $ php artisan optimize
 ```
 
